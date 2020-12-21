@@ -26,7 +26,7 @@ if (!checkPresentsSpeedtestCli || checkPresentsSpeedtestCli.stderr !== null) {
 // #endregion
 
 // #region Utilities
-function bitToMbStr(bit: number): string {
+function bitToMbitStr(bit: number): string {
   return (bit / 1024 / 1024).toFixed(2);
 }
 
@@ -53,10 +53,10 @@ function writeJsonResultAsCsv(body: SpeedTestResult): void {
     body.timestamp};${
     body.client.isp};${
     body.ping};${
-    bitToMbStr(body.download)};${
-    bitToMbStr(body.bytes_received)};${
-    bitToMbStr(body.upload)};${
-    bitToMbStr(body.bytes_sent)};${
+    bitToMbitStr(body.download)};${
+    bitToMbitStr(body.bytes_received)};${
+    bitToMbitStr(body.upload)};${
+    bitToMbitStr(body.bytes_sent)};${
     body.server.name};${
     body.server.country
   };${NEW_LINE}`;
@@ -72,9 +72,9 @@ function speedTestRun(): void {
 
   info('Processing speedtest result');
   if (speedTestResult.code === 0 && speedTestResult.stdout !== '' && speedTestResult.stderr === '') {
-    const result: SpeedTestResult = JSON.parse(speedTestResult.stdout);
-
     try {
+      const result: SpeedTestResult = JSON.parse(speedTestResult.stdout);
+
       writeJsonResult(result);
       writeJsonResultAsCsv(result);
     } catch (err) {
