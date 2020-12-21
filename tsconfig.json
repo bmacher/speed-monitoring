@@ -25,7 +25,8 @@
       "node_modules/@types"
     ],
     "types": [
-      "node"
+      "node",
+      "shelljs"
     ],
     "charset": "utf8",
     "esModuleInterop": true,
