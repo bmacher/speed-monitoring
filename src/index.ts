@@ -31,7 +31,7 @@ function bitToMbitStr(bit: number): string {
 }
 
 function writeJsonResult(body: SpeedTestResult): void {
-  const jsonLogFilePath = resolve('logs/speedtest.json');
+  const jsonLogFilePath = resolve('../logs/speedtest.json');
 
   info('Reading current JSON logs');
   const jsonLogs: SpeedTestResult[] = JSON.parse(
@@ -43,7 +43,7 @@ function writeJsonResult(body: SpeedTestResult): void {
 }
 
 function writeJsonResultAsCsv(body: SpeedTestResult): void {
-  const csvLogFilePath = resolve('logs/speedtest.csv');
+  const csvLogFilePath = resolve('../logs/speedtest.csv');
 
   info('Reading current CSV logs');
   const csvLogs = readFileSync(csvLogFilePath).toString();
@@ -61,7 +61,7 @@ function writeJsonResultAsCsv(body: SpeedTestResult): void {
     body.server.country
   };${NEW_LINE}`;
 
-  info(entry);
+  info(entry.slice(0, -2));
   info('Writing new CSV logs');
   writeFileSync(csvLogFilePath, csvLogs + entry);
 }
