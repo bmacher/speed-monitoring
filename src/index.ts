@@ -26,6 +26,10 @@ if (!checkPresentsSpeedtestCli || checkPresentsSpeedtestCli.stderr !== null) {
 // #endregion
 
 // #region Utilities
+function bitToMbStr(bit: number): string {
+  return (bit / 1024 / 1024).toFixed(2);
+}
+
 function writeJsonResult(body: SpeedTestResult): void {
   const jsonLogFilePath = resolve('logs/speedtest.json');
 
@@ -48,10 +52,11 @@ function writeJsonResultAsCsv(body: SpeedTestResult): void {
   const entry = `${
     body.timestamp};${
     body.client.isp};${
-    body.download};${
-    body.bytes_received};${
-    body.upload};${
-    body.bytes_sent};${
+    body.ping};${
+    bitToMbStr(body.download)};${
+    bitToMbStr(body.bytes_received)};${
+    bitToMbStr(body.upload)};${
+    bitToMbStr(body.bytes_sent)};${
     body.server.name};${
     body.server.country
   };${NEW_LINE}`;
