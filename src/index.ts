@@ -61,7 +61,7 @@ function writeJsonResultAsCsv(body: SpeedTestResult): void {
     body.server.country
   };${NEW_LINE}`;
 
-  info(entry.slice(0, -2));
+  info(entry.slice(0, -1));
   info('Writing new CSV logs');
   writeFileSync(csvLogFilePath, csvLogs + entry);
 }
